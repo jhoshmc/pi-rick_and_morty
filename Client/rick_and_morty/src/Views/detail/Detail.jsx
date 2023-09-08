@@ -2,7 +2,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import style from "./detail.module.css";
-const url = "https://rickandmortyapi.com/api/character";
+const url = "http://localhost:3001/rickandmorty/character";
 const Detail = () => {
   const { id } = useParams();
 

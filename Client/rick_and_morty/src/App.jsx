@@ -9,7 +9,8 @@ import ErrorPage from "./Views/ErrorPage";
 import Form from "./Views/forms/Form";
 import Favorites from "./Views/favorites/Favorites";
 import "./App.css";
-const url = "https://rickandmortyapi.com/api/character";
+//const url = "https://rickandmortyapi.com/api/character";
+const url = "http://localhost:3001/rickandmorty/character";
 const EMAIL = "jhoshmc201@gmail.com";
 const PASSWORD = "niidea1";
 
