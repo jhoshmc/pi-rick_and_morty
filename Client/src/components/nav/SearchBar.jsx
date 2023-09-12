@@ -3,9 +3,6 @@ const SearchBar = ({ onSearch }) => {
   const [id, setId] = useState("");
   const handleChange = (e) => {
     setId(e.target.value);
-    setTimeout(() => {
-      setId((e.target.value = ""));
-    }, "2000");
   };
 
   return (

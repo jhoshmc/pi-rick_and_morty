@@ -11,8 +11,8 @@ import Favorites from "./Views/favorites/Favorites";
 import "./App.css";
 //const url = "https://rickandmortyapi.com/api/character";
 const url = "http://localhost:3001/rickandmorty/character";
-const EMAIL = "jhoshmc201@gmail.com";
-const PASSWORD = "niidea1";
+// const EMAIL = "jhoshmc201@gmail.com";
+// const PASSWORD = "niidea1";
 
 function App() {
   const navigate = useNavigate();
@@ -22,11 +22,20 @@ function App() {
   const [access, setAccess] = useState(true);
 
   const login = (userData) => {
+    /*
     if (userData.password === PASSWORD && userData.email === EMAIL) {
       setAccess(true);
       navigate("/home");
-    }
+    }*/
+    const { email, password } = userData;
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+      const { access } = data;
+      setAccess(data);
+      access && navigate("/home");
+    });
   };
+
   useEffect(() => {
     !access && navigate("/");
   }, [access]);

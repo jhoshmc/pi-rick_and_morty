@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { addFav, removefav } from "../../redux/actions/actions-creators";
+import { addFav, removeFav } from "../../redux/actions/actions-creators";
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
-const Card = ({ characters, onclose, addFav, removefav, myFavorites }) => {
-  const { id, name, status, species, gender, origin, image } = characters;
+const Card = ({ characters, onclose, addFav, removeFav, myFavorites }) => {
+  const { id, name, status, image } = characters;
   const [isFav, setIsFav] = useState(false);
   useEffect(() => {
     /*
@@ -23,7 +23,7 @@ const Card = ({ characters, onclose, addFav, removefav, myFavorites }) => {
 
   const handleFavorite = (data) => {
     if (isFav) {
-      removefav(data);
+      removeFav(data);
       setIsFav(false);
     } else {
       addFav(data);
@@ -43,9 +43,6 @@ const Card = ({ characters, onclose, addFav, removefav, myFavorites }) => {
         <h3>{id}</h3>
         <h3>{name}</h3>
         <h3>{status}</h3>
-        <h3>{species}</h3>
-        <h3>{gender}</h3>
-        <h3>{origin.name}</h3>
       </div>
       <Link to={`/detail/${id}`}>
         <figure>
@@ -59,7 +56,7 @@ const Card = ({ characters, onclose, addFav, removefav, myFavorites }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addFav: (personaje) => dispatch(addFav(personaje)),
-    removefav: (id) => dispatch(removefav(id)),
+    removeFav: (id) => dispatch(removeFav(id)),
   };
 };
 const mapStateToProps = (state) => {
