@@ -16,18 +16,19 @@ const Detail = () => {
 
   return (
     <div className={style.container}>
-      <div>
-        <h1>{character.name}</h1>
-        <h3>status: {character.status}</h3>
-        <h3>gender: {character.gender}</h3>
-        <h3>{character.type && `type : ${character.type}`}</h3>
-        <h3>origin:</h3>
-        <h3>{character.origin?.name}</h3>
-        <h3>Last known location:</h3>
-        <h3>{character.location?.name}</h3>
-      </div>
-      <div>
+      <div className={style.info}>
+        <div>
+          <h1>{character.name}</h1>
+          <h3>status: {character.status}</h3>
+          <h3>gender: {character.gender}</h3>
+          <h3>{character.type && `type : ${character.type}`}</h3>
+          <h3>origin:</h3>
+          <h3>{character.origin?.name}</h3>
+          <h3>Last known location:</h3>
+          <h3>{character.location?.name}</h3>
+        </div>
         <img
+          className={style.imagen}
           height="300px"
           width="auto"
           src={character.image}

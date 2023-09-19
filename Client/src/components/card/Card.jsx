@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { addFav, removeFav } from "../../redux/actions/actions-creators";
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
+import style from "./card.module.css";
 const Card = ({ characters, onclose, addFav, removeFav, myFavorites }) => {
   const { id, name, status, image } = characters;
   const [isFav, setIsFav] = useState(false);
@@ -32,7 +33,7 @@ const Card = ({ characters, onclose, addFav, removeFav, myFavorites }) => {
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <button onClick={() => onclose(id)}>X</button>
       <div>
         {isFav ? (

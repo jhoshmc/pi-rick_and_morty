@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { validacion } from "../../helpers/validaciones";
-import style from "./forms.module.css";
-import emailImage from "../../assets/email-svgrepo-com.svg";
+import style from "./newUser.module.css";
+import email from "../../assets/email-svgrepo-com.svg";
 import lock from "../../assets/lock.svg";
-const Form = ({ login }) => {
+const NewUser = ({ user }) => {
   const [userData, setUserData] = useState({
+    alias: "",
     email: "",
     password: "",
   });
@@ -28,37 +29,27 @@ const Form = ({ login }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(userData);
+    user(userData);
   };
-  // desabilitar el voton submit si hay errores
-  const diseableHandle = () => {
-    let disabled;
-    for (let error in errors) {
-      if (errors[error] === "") {
-        disabled = false;
-      } else {
-        disabled = true;
-        break;
-      }
-    }
-  };
+
   return (
     <section>
       <div className={style.contenedor}>
-        <div>
-          <form className={style.formulario} onSubmit={handleSubmit}>
-            <h2>Iniciar Sesión</h2>
+        <div className={style.formulario}>
+          <form onSubmit={handleSubmit}>
+            <h2>Crear Cuenta</h2>
             <div className={style.input_contenedor}>
               <i>
-                <img className={style.icono} src={emailImage} alt="email" />
+                <img className={style.icono} src={email} alt="email" />
               </i>
               <input
                 type="text"
                 name="email"
+                id="email"
                 value={userData.email}
                 onChange={handleChange}
               />
-              <label>Email</label>
+              <label>Ingrese un email</label>
             </div>
             {errors.email && <samp>{errors.email}</samp>}
             <div className={style.input_contenedor}>
@@ -68,36 +59,30 @@ const Form = ({ login }) => {
               <input
                 type="text"
                 name="password"
+                id="passwoed"
                 value={userData.password}
                 onChange={handleChange}
+                placeholder="Your password"
               />
-              <label>Password</label>
+              <label>Ingrese una contraseña</label>
             </div>
             <div className={style.error}>
               {errors.password && <span>{errors.password}</span>}
             </div>
-
-            <div className={style.olvidar}>
-              <label>
-                <input type="checkbox" /> Reconrdar
-                <a href="#"> Olvidé la contraseña</a>
-              </label>
-            </div>
             <button className={style.boton} type="submit">
-              log in
+              create an Account
             </button>
           </form>
-          <div>
-            <div className={style.registrar}>
-              <p>
-                No tengo Cuenta
-                <NavLink to="/newUser">sing up</NavLink>
-              </p>
-            </div>
+          <div className={style.volver}>
+            <p>
+              Regresar
+              <NavLink to="/"> back</NavLink>
+            </p>
           </div>
         </div>
       </div>
     </section>
   );
 };
-export default Form;
+
+export default NewUser;

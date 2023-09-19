@@ -1,0 +1,37 @@
+.contenedor {
+  display: flex;
+
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: url("../../assets/toiled.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.description {
+  position: relative;
+  width: 400px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  background-color: rgb(175, 253, 253);
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.portada {
+  width: 12rem;
+  height: 18rem;
+  border-radius: 10px;
+}
+.icono {
+  width: 40px;
+  height: 40px;
+}
+.iconos {
+  display: flex;
+  justify-content: space-around;
+}

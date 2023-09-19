@@ -1,5 +1,12 @@
 .container {
   display: flex;
+  margin-bottom: 0px;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: url("../../assets/rick_paisaje.jpg");
+  background-position: center;
+  background-size: cover;
 }

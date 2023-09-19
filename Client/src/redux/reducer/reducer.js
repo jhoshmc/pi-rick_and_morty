@@ -1,12 +1,21 @@
-import { ADD_FAV, REMOVE_FAV, ORDER, FILTER } from "../actions/actions-types";
+import {
+  ADD_FAV,
+  REMOVE_FAV,
+  ORDER,
+  FILTER,
+  CREATER_USER,
+} from "../actions/actions-types";
 const initialState = {
   myFavorites: [],
   allCharacters: [],
+  user: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case CREATER_USER:
+      return { ...state, user: payload };
     // case ADD_FAV:
     //   return {
     //     ...state,
@@ -39,14 +48,15 @@ const rootReducer = (state = initialState, action) => {
     case ORDER:
       let orden;
       if (payload === "Ascendente") {
-        orden = state.myFavorites.sort((a, b) => (a.id > b.id ? 1 : -1));
+        orden = state.myFavorites.sort((a, b) => a.id - b.id);
       }
       if (payload === "Descendente") {
-        orden = state.myFavorites.sort((a, b) => (b.id > a.id ? 1 : -1));
+        orden = state.myFavorites.sort((a, b) => b.id - a.id);
       }
       return {
         ...state,
       };
+
     default:
       return { ...state };
   }

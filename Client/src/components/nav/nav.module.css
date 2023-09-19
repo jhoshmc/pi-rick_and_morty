@@ -1,4 +1,7 @@
 .container {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+
+  padding: 1rem;
+  background-color: greenyellow;
 }

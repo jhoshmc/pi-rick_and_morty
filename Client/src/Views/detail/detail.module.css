@@ -1,4 +1,27 @@
 .container {
   display: flex;
-  justify-content: space-around;
+  margin-bottom: 0px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: url("../../assets/rick_paisaje.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.info {
+  display: flex;
+
+  align-items: center;
+
+  position: relative;
+
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+}
+.imagen {
+  border-radius: 10px;
 }

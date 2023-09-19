@@ -3,12 +3,13 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cards from "./components/Cards/Cards";
 import Nav from "./components/nav/Nav";
-import About from "./Views/About";
+import About from "./Views/about/About";
 import Detail from "./Views/detail/Detail";
 import ErrorPage from "./Views/ErrorPage";
 import Form from "./Views/forms/Form";
 import Favorites from "./Views/favorites/Favorites";
-import "./App.css";
+//import style from "./App.css";
+import NewUser from "./Views/createNewUser/NewUser";
 //const url = "https://rickandmortyapi.com/api/character";
 const url = "http://localhost:3001/rickandmorty/character";
 // const EMAIL = "jhoshmc201@gmail.com";
@@ -21,12 +22,30 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(true);
 
+  //* async await
+
+  async function login(userData) {
+    const { email, password } = userData;
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    const { data } = await axios(URL + `?email=${email}&password=${password}`);
+    const { access } = data;
+    setAccess(data);
+    access && navigate("/home");
+  }
+  function user(userData) {
+    const { alias, email, password } = userData;
+
+    const url = "http://localhost:3001/rickandmorty/newUser/";
+    axios.post(`${url}?alias=${alias}&email=${email}&password=${password}`);
+  }
+  /*
   const login = (userData) => {
     /*
     if (userData.password === PASSWORD && userData.email === EMAIL) {
       setAccess(true);
       navigate("/home");
     }*/
+  /*
     const { email, password } = userData;
     const URL = "http://localhost:3001/rickandmorty/login/";
     axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
@@ -34,7 +53,7 @@ function App() {
       setAccess(data);
       access && navigate("/home");
     });
-  };
+  };*/
 
   useEffect(() => {
     !access && navigate("/");
@@ -43,7 +62,35 @@ function App() {
   const onclose = (i) => {
     setCharacters(characters.filter(({ id }) => id !== Number(i)));
   };
+  //*async await
+  async function onSearch(id) {
+    try {
+      let repetida = false;
+      for (let i = 0; i < characters.length; i++) {
+        if (characters[i].id === Number(id)) {
+          repetida = true;
+          break;
+        }
+      }
 
+      if (repetida === false) {
+        axios(`${url}/${id}`).then(({ data }) => {
+          if (data.name) {
+            setCharacters((oldChars) => [...oldChars, data]);
+          } else {
+            throw Error(window.alert("¡No hay personajes con este ID!"));
+          }
+        });
+      } else {
+        throw Error(window.alert("card ya ingresada"));
+      }
+    } catch (error) {
+      window.alert(error.message);
+    }
+  }
+
+  //* promesas
+  /*
   const onSearch = (id) => {
     let repetida = false;
     for (let i = 0; i < characters.length; i++) {
@@ -65,6 +112,7 @@ function App() {
       window.alert("card ya ingresada");
     }
   };
+*/
   const random = () => {
     const min = 1;
     const max = 826;
@@ -77,13 +125,14 @@ function App() {
     setCharacters([]);
   };
   return (
-    <div>
-      {pathname !== "/" && (
+    <div className={style.container}>
+      {pathname !== "/" && pathname !== "/newUser" && (
         <Nav onSearch={onSearch} random={random} logOut={logOut} />
       )}
 
       <Routes>
         <Route path="/" element={<Form login={login} />} />
+        <Route path="/newUser" element={<NewUser user={user} />} />
         <Route
           path="/home"
           element={<Cards characters={characters} onclose={onclose} />}
