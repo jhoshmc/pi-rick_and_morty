@@ -3,7 +3,7 @@ import {
   REMOVE_FAV,
   FILTER,
   ORDER,
-  CREATER_USER,
+  // CREATER_USER,
 } from "./actions-types";
 import axios from "axios";
 
@@ -94,10 +94,10 @@ export const orderCards = (order) => {
     payload: order,
   };
 };
-
+/*
 export const createrUser = (user) => {
   try {
-    const endpoint = "http://localhost:3001/rickandmorty/newUser";
+    const endpoint = "http://localhost:3001/rickandmorty/login";
     return async (dispatch) => {
       const { data } = await axios.post(endpoint, user);
       return dispatch({
@@ -109,3 +109,4 @@ export const createrUser = (user) => {
     window.alert({ error: error.message });
   }
 };
+*/

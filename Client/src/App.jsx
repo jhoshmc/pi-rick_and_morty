@@ -23,20 +23,20 @@ function App() {
   const [access, setAccess] = useState(true);
 
   //* async await
-
+  //http://localhost:3001/rickandmorty/login/?email=juan@gmail.com&password=niidea4
   async function login(userData) {
     const { email, password } = userData;
     const URL = "http://localhost:3001/rickandmorty/login/";
-    const { data } = await axios(URL + `?email=${email}&password=${password}`);
+    const { data } = await axios(`${URL}?email=${email}&password=${password}`);
     const { access } = data;
     setAccess(data);
     access && navigate("/home");
   }
   function user(userData) {
-    const { alias, email, password } = userData;
+    const { email, password } = userData;
 
-    const url = "http://localhost:3001/rickandmorty/newUser/";
-    axios.post(`${url}?alias=${alias}&email=${email}&password=${password}`);
+    const url = "http://localhost:3001/rickandmorty/login/";
+    axios.post(`?email=${email}&password=${password}`);
   }
   /*
   const login = (userData) => {
@@ -125,7 +125,7 @@ function App() {
     setCharacters([]);
   };
   return (
-    <div className={style.container}>
+    <div>
       {pathname !== "/" && pathname !== "/newUser" && (
         <Nav onSearch={onSearch} random={random} logOut={logOut} />
       )}

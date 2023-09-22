@@ -1,13 +1,15 @@
 //const http = require("http");
 //const getCharById = require("./controllers/getCharById");
 //* server con express
-const { json } = require("express");
+//const { json } = require("express");
 const express = require("express");
-const router = require("./routes/index");
+const router = require("./src/routes/index");
+const { conn } = require("./src/DB_connection");
 
 const server = express();
 const PORT = 3001;
 server.listen(PORT, () => {
+  conn.sync({ force: false });
   console.log(`Server raised in port: ${PORT}`);
 });
 
