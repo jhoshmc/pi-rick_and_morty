@@ -6,10 +6,10 @@ import style from "./favorites.module.css";
 
 const Favorites = ({ myFavorites }) => {
   const dispatch = useDispatch();
-  const [aux, setAux] = useState(false);
+  // const [aux, setAux] = useState(false);
 
   const handleOrder = (e) => {
-    setAux({ aux: true });
+    // setAux({ aux: true });
     dispatch(orderCards(e.target.value));
   };
   const handleFilter = (e) => {

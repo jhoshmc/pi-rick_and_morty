@@ -5,11 +5,26 @@
 const express = require("express");
 const router = require("./src/routes/index");
 const { conn } = require("./src/DB_connection");
+const cors = require("cors");
 
 const server = express();
 const PORT = 3001;
+
+//#region
+server.use(express.urlencoded({ extended: false }));
+server.use(
+  express.json({
+    type: "*/*",
+  })
+);
+
+server.use(cors());
+
+//#endregion
+
+//* middleware
 server.listen(PORT, () => {
-  conn.sync({ force: false });
+  conn.sync({ force: true });
   console.log(`Server raised in port: ${PORT}`);
 });
 
@@ -25,7 +40,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use(express.json());
+//server.use(express.json());
 server.use("/rickandmorty", router);
 
 /*

@@ -20,7 +20,7 @@ function App() {
   const { pathname } = useLocation();
 
   const [characters, setCharacters] = useState([]);
-  const [access, setAccess] = useState(true);
+  const [access, setAccess] = useState(false);
 
   //* async await
   //http://localhost:3001/rickandmorty/login/?email=juan@gmail.com&password=niidea4
@@ -28,16 +28,30 @@ function App() {
     const { email, password } = userData;
     const URL = "http://localhost:3001/rickandmorty/login/";
     const { data } = await axios(`${URL}?email=${email}&password=${password}`);
-    const { access } = data;
-    setAccess(data);
-    access && navigate("/home");
-  }
-  function user(userData) {
-    const { email, password } = userData;
 
-    const url = "http://localhost:3001/rickandmorty/login/";
-    axios.post(`?email=${email}&password=${password}`);
+    const { acces } = data;
+    setAccess(acces);
+    acces && navigate("/home");
   }
+  //   function user(userData) {
+  //     const user= JSON.stringify(userData)
+  //     const URLP = "http://localhost:3001/rickandmorty/login";
+  //      axios({
+  //    method: 'post',
+  //    url:URLP,
+  //    headers: {},
+  //    data: {
+  //      foo: user, // This is the body part
+  //    }
+  //  });
+  //     //  fetch(url, {
+  //     //    method: "post",
+  //     //    body: user
+  //     //  });
+  //     //  console.log(user)
+
+  //     //axios.post(`?email=${email}&password=${password}`);
+  //   }
   /*
   const login = (userData) => {
     /*
@@ -132,7 +146,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Form login={login} />} />
-        <Route path="/newUser" element={<NewUser user={user} />} />
+        <Route path="/newUser" element={<NewUser />} />
         <Route
           path="/home"
           element={<Cards characters={characters} onclose={onclose} />}

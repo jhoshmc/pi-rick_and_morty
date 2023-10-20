@@ -3,25 +3,18 @@ import {
   REMOVE_FAV,
   ORDER,
   FILTER,
-  //CREATER_USER,
+  
 } from "../actions/actions-types";
 const initialState = {
   myFavorites: [],
   allCharacters: [],
-  user: [],
+  
 };
 
 const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    // case CREATER_USER:
-    //   return { ...state, user: payload };
-    // case ADD_FAV:
-    //   return {
-    //     ...state,
-    //     myFavorites: [...state.myFavorites, payload],
-    //     allCharacters: [...state.myFavorites, payload],
-    //   };
+    
     case ADD_FAV:
       return { ...state, myFavorites: payload, allCharacters: payload };
     /*
