@@ -2,13 +2,14 @@
 //const getCharById = require("./controllers/getCharById");
 //* server con express
 //const { json } = require("express");
+require("dotenv").config();
 const express = require("express");
 const router = require("./src/routes/index");
 const { conn } = require("./src/DB_connection");
 const cors = require("cors");
 
 const server = express();
-const PORT = 3001;
+const PORT = process.env.PORT;
 
 //#region
 server.use(express.urlencoded({ extended: false }));
